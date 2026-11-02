@@ -110,12 +110,12 @@
                 <h2 class="text-3xl font-extrabold text-gray-900">Ommabop Mahsulotlar</h2>
                 <p class="text-gray-600 max-w-xl mx-auto">Siz uchun maxsus tanlangan eng sara mahsulotlarimiz bilan tanishing.</p>
                 
-                <!-- Filter Buttons -->
+                <!-- Filter Buttons (Xatolik tuzatilgan holatda: this qo'shildi) -->
                 <div class="flex flex-wrap justify-center gap-2 pt-4">
-                    <button onclick="filterProducts('all')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white shadow transition">Barchasi</button>
-                    <button onclick="filterProducts('elektronika')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Elektronika</button>
-                    <button onclick="filterProducts('kiyim')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Kiyim-kechak</button>
-                    <button onclick="filterProducts('aksessuar')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Aksessuarlar</button>
+                    <button onclick="filterProducts('all', this)" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white shadow transition">Barchasi</button>
+                    <button onclick="filterProducts('elektronika', this)" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Elektronika</button>
+                    <button onclick="filterProducts('kiyim', this)" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Kiyim-kechak</button>
+                    <button onclick="filterProducts('aksessuar', this)" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Aksessuarlar</button>
                 </div>
             </div>
 
@@ -293,7 +293,6 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Mahsulotlar bazasi
         const products = [
             { id: 1, name: "Smart Watch Pro", category: "elektronika", price: 450000, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" },
             { id: 2, name: "Wireless Bluetooth Naushnik", category: "elektronika", price: 320000, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" },
@@ -307,12 +306,10 @@
 
         let cart = [];
 
-        // Sahifa yuklanganda mahsulotlarni chiqarish
         window.addEventListener('DOMContentLoaded', () => {
             renderProducts(products);
         });
 
-        // Mahsulotlarni chizish
         function renderProducts(items) {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -339,15 +336,16 @@
             });
         }
 
-        // Filterlash
-        function filterProducts(category) {
-            // Tugmalar rangini o'zgartirish
+        // Tuzatilgan filterlash funksiyasi
+        function filterProducts(category, element) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('bg-brand-600', 'text-white', 'shadow');
                 btn.classList.add('bg-gray-100', 'text-gray-600');
             });
-            event.target.classList.remove('bg-gray-100', 'text-gray-600');
-            event.target.classList.add('bg-brand-600', 'text-white', 'shadow');
+            if (element) {
+                element.classList.remove('bg-gray-100', 'text-gray-600');
+                element.classList.add('bg-brand-600', 'text-white', 'shadow');
+            }
 
             if (category === 'all') {
                 renderProducts(products);
@@ -357,19 +355,16 @@
             }
         }
 
-        // Mobil menyuni ochish/yopish
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Savatni ochish/yopish
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             drawer.classList.toggle('hidden');
         }
 
-        // Savatga qo'shish
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             const existing = cart.find(item => item.id === productId);
@@ -382,7 +377,6 @@
             toggleCart();
         }
 
-        // Savat UI yangilash
         function updateCartUI() {
             const cartItems = document.getElementById('cart-items');
             const cartBadge = document.getElementById('cart-badge');
@@ -422,13 +416,11 @@
             cartTotal.textContent = totalSum.toLocaleString() + " so'm";
         }
 
-        // Savatdan o'chirish
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCartUI();
         }
 
-        // Buyurtma berish
         function checkout() {
             if (cart.length === 0) {
                 alert("Savatingiz bo'sh!");
@@ -440,7 +432,6 @@
             toggleCart();
         }
 
-        // Bog'lanish formasi
         function handleContact(e) {
             e.preventDefault();
             alert("Xabaringiz muvaffaqiyatli yuborildi!");
