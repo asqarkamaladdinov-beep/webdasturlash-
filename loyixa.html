@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextStore - Zamonaviy Onlayn Magazin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                        N
+                    </div>
+                    <span class="text-2xl font-black bg-gradient-to-r from-brand-700 to-emerald-500 bg-clip-text text-transparent">NextStore</span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+                    <a href="#home" class="hover:text-brand-600 transition">Asosiy</a>
+                    <a href="#products" class="hover:text-brand-600 transition">Mahsulotlar</a>
+                    <a href="#features" class="hover:text-brand-600 transition">Afzalliklar</a>
+                    <a href="#reviews" class="hover:text-brand-600 transition">Sharhlar</a>
+                    <a href="#contact" class="hover:text-brand-600 transition">Bog'lanish</a>
+                </nav>
+
+                <!-- Actions: Cart & Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleCart()" class="relative p-2.5 rounded-xl bg-gray-100 hover:bg-brand-50 hover:text-brand-600 transition">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-3">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-brand-600 font-medium">Asosiy</a>
+            <a href="#products" class="block py-2 text-gray-600 hover:text-brand-600 font-medium">Mahsulotlar</a>
+            <a href="#features" class="block py-2 text-gray-600 hover:text-brand-600 font-medium">Afzalliklar</a>
+            <a href="#reviews" class="block py-2 text-gray-600 hover:text-brand-600 font-medium">Sharhlar</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-brand-600 font-medium">Bog'lanish</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-emerald-50 py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-100 text-brand-700">
+                        <i class="fa-solid fa-bolt mr-1.5"></i> Yangi mavsum chegirmalari 30% gacha
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                        Eng Sara Mahsulotlar <span class="bg-gradient-to-r from-brand-600 to-emerald-500 bg-clip-text text-transparent">Bir Qadam Masofada</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 max-w-xl mx-auto lg:mx-0">
+                        Sifatli elektronika, zamonaviy kiyimlar va aksessuarlarni eng hamyonbop narxlarda xarid qiling. Tez yetkazib berish va kafolat!
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 text-white font-semibold shadow-lg shadow-brand-600/30 hover:bg-brand-700 transition text-center">
+                            Xaridni Boshlash <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition text-center">
+                            Batafsil
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Hero Product" class="w-full h-auto object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">Ommabop Mahsulotlar</h2>
+                <p class="text-gray-600 max-w-xl mx-auto">Siz uchun maxsus tanlangan eng sara mahsulotlarimiz bilan tanishing.</p>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 pt-4">
+                    <button onclick="filterProducts('all')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white shadow transition">Barchasi</button>
+                    <button onclick="filterProducts('elektronika')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Elektronika</button>
+                    <button onclick="filterProducts('kiyim')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Kiyim-kechak</button>
+                    <button onclick="filterProducts('aksessuar')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Aksessuarlar</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- JavaScript orqali dinamik to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="py-20 bg-gray-50 border-t border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900">Nima uchun bizni tanlashadi?</h2>
+                <p class="text-gray-600 mt-2">Mijozlarimizga eng qulay sharoitlarni taqdim etamiz.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Tezkor Yetkazib Berish</h3>
+                    <p class="text-gray-600 text-sm">O'zbekiston bo'ylab barcha viloyat markazlariga qisqa muddatda yetkazamiz.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">100% Kafolat</h3>
+                    <p class="text-gray-600 text-sm">Barcha mahsulotlar sifat nazoratidan o'tgan va rasmiy kafolatga ega.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">24/7 Qo'llab-quvvatlash</h3>
+                    <p class="text-gray-600 text-sm">Savollaringiz bormi? Mutaxassislarimiz istalgan vaqtda yordam berishga tayyor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900">Mijozlarimiz fikrlari</h2>
+                <p class="text-gray-600 mt-2">Xaridorlarimizning biz haqidagi samimiy munosabatlari.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex items-center space-x-1 text-amber-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm">"Buyurtma bergan smart-watchim juda tez yetib keldi. Sifati a'lo darajada, rahmat!"</p>
+                    <div class="flex items-center space-x-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center">A</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-900">Azizbek Rahimov</h4>
+                            <span class="text-xs text-gray-500">Toshkent sh.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex items-center space-x-1 text-amber-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm">"Narxlar boshqa joylarga qaraganda ancha qulay ekan. Xizmat ko'rsatish darajasi yuqori."</p>
+                    <div class="flex items-center space-x-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center">D</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-900">Dilfuza Karimova</h4>
+                            <span class="text-xs text-gray-500">Samarqand sh.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex items-center space-x-1 text-amber-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm">"Aksessuarlar sifati yoqdi. O'z vaqtida va butun holatda yetkazib berishdi. Tavsiya qilaman!"</p>
+                    <div class="flex items-center space-x-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center">S</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-900">Sardorbek Umarov</h4>
+                            <span class="text-xs text-gray-500">Buxoro sh.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Biz bilan bog'laning</h2>
+                    <p class="text-gray-600">Savollaringiz bormi yoki buyurtma bermoqchimisiz? Bizga xabar yuboring, tez orada siz bilan bog'lanamiz.</p>
+                    <div class="space-y-4 text-gray-600">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+                            <span>Toshkent shahri, Chilonzor tumani</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+                            <span>+998 (90) 123-45-67</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+                            <span>support@nextstore.uz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-4">
+                    <form onsubmit="handleContact(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Ismingiz</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition" placeholder="Ismingizni kiriting">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Telefon raqamingiz</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition" placeholder="+998 -- --- -- --">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Xabaringiz</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition" placeholder="Xabaringizni yozing..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg shadow-brand-600/20">
+                            Xabar yuborish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">N</div>
+                <span class="text-xl font-bold">NextStore</span>
+            </div>
+            <p class="text-gray-400 text-sm">Barcha huquqlar himoyalangan &copy; 2026 NextStore</p>
+        </div>
+    </footer>
+
+    <!-- CART SIDEBAR / DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900">Sizning savatingiz</h3>
+                    <button onclick="toggleCart()" class="p-2 text-gray-400 hover:text-gray-600 rounded-lg"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Savat mahsulotlari -->
+                </div>
+                <div class="border-t border-gray-100 p-6 space-y-4 bg-gray-50">
+                    <div class="flex justify-between items-center text-base font-bold text-gray-900">
+                        <span>Umumiy summa:</span>
+                        <span id="cart-total">0 so'm</span>
+                    </div>
+                    <button onclick="checkout()" class="w-full py-4 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg shadow-brand-600/30 text-center">
+                        Buyurtma berish
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mahsulotlar bazasi
+        const products = [
+            { id: 1, name: "Smart Watch Pro", category: "elektronika", price: 450000, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Wireless Bluetooth Naushnik", category: "elektronika", price: 320000, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Zamonaviy Qora Xudi", category: "kiyim", price: 280000, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Quyosh Ko'zoynagi", category: "aksessuar", price: 150000, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "DSLR Kamera", category: "elektronika", price: 3500000, image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Sport krossovka", category: "kiyim", price: 420000, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" },
+            { id: 7, name: "Charm Sumka", category: "aksessuar", price: 310000, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80" },
+            { id: 8, name: "Minimalist Ryukzak", category: "aksessuar", price: 240000, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        let cart = [];
+
+        // Sahifa yuklanganda mahsulotlarni chiqarish
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+        });
+
+        // Mahsulotlarni chizish
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            items.forEach(product => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+                        <div class="relative overflow-hidden group h-64 bg-gray-100">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">${product.category}</span>
+                                <h3 class="font-bold text-gray-900 text-lg mt-1">${product.name}</h3>
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <span class="text-lg font-black text-gray-900">${product.price.toLocaleString()} so'm</span>
+                                <button onclick="addToCart(${product.id})" class="p-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700 transition shadow-md shadow-brand-600/20">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Filterlash
+        function filterProducts(category) {
+            // Tugmalar rangini o'zgartirish
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow');
+                btn.classList.add('bg-gray-100', 'text-gray-600');
+            });
+            event.target.classList.remove('bg-gray-100', 'text-gray-600');
+            event.target.classList.add('bg-brand-600', 'text-white', 'shadow');
+
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Mobil menyuni ochish/yopish
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Savatni ochish/yopish
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Savatga qo'shish
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Savat UI yangilash
+        function updateCartUI() {
+            const cartItems = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartTotal = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<p class="text-center text-gray-500 py-10">Savatingiz bo'sh</p>`;
+                cartTotal.textContent = "0 so'm";
+                return;
+            }
+
+            cartItems.innerHTML = '';
+            let totalSum = 0;
+
+            cart.forEach(item => {
+                totalSum += item.price * item.quantity;
+                cartItems.innerHTML += `
+                    <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="flex-1 ml-4">
+                            <h4 class="font-bold text-sm text-gray-900">${item.name}</h4>
+                            <span class="text-xs text-gray-500">${item.price.toLocaleString()} so'm x ${item.quantity}</span>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 p-2"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            });
+
+            cartTotal.textContent = totalSum.toLocaleString() + " so'm";
+        }
+
+        // Savatdan o'chirish
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        // Buyurtma berish
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Savatingiz bo'sh!");
+                return;
+            }
+            alert("Buyurtmangiz qabul qilindi! Tez orada operatorlarimiz bog'lanishadi.");
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Bog'lanish formasi
+        function handleContact(e) {
+            e.preventDefault();
+            alert("Xabaringiz muvaffaqiyatli yuborildi!");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
